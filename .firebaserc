@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "bus-project-52efc": {
+      "hosting": {
+        "app": [
+          "bus-project-52efc"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "bus-project-52efc"
+  }
+}

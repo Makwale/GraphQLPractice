@@ -1,0 +1,142 @@
+
+
+<ion-content>
+  
+  <mat-sidenav-container class="example-container" >
+    <mat-sidenav fixedInViewport fixedTopGap="80" mode="side" class="acc" opened style="width: 300px;" >
+
+        <mat-accordion color="primary" >
+          <mat-expansion-panel class="acc">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-icon size="large" color="light" name="people"></ion-icon>
+              
+              </mat-panel-title>
+
+              <mat-panel-description>
+                <ion-label color="light">Drivers</ion-label>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <ion-item button routerLink="driver" color="ourtheme" detail>
+              <ion-icon slot="start" name="people"></ion-icon><ion-label>View Drivers</ion-label>
+            </ion-item>
+
+            <ion-item button routerLink="adddriver" color="ourtheme" detail>
+              <ion-icon slot="start" name="person-add"></ion-icon>
+              <ion-label>Add Driver</ion-label>
+            </ion-item>
+
+            <ion-item button color="ourtheme" detail (click)="generate('d')">
+              <ion-icon name="download" slot="start"></ion-icon>
+              <ion-label>Report as pdf</ion-label>
+            </ion-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="acc" >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-icon slot="start" color="light" size="large" name="car"></ion-icon>
+              </mat-panel-title>
+              <mat-panel-description>
+                <ion-label color="light">Buses</ion-label>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <ion-item button routerLink="bus" color="ourtheme" detail>
+              <ion-icon slot="start" name="car"></ion-icon><ion-label>View Buses</ion-label>
+            </ion-item>
+
+            <ion-item button routerLink="addbus" color="ourtheme" detail>
+              <ion-icon slot="start" name="add"></ion-icon>
+              <ion-label>Add Bus</ion-label>
+            </ion-item>
+
+            <ion-item button color="ourtheme" detail (click)="generate('b')">
+              <ion-icon name="download" slot="start"></ion-icon>
+              <ion-label>Report as pdf</ion-label>
+            </ion-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="acc" >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-icon slot="start" size="large" color="light" name="card"></ion-icon>
+              </mat-panel-title>
+
+              <mat-panel-description>
+                <ion-label color="light">Slots</ion-label>
+              </mat-panel-description>
+              
+            </mat-expansion-panel-header>
+            
+            <ion-item button routerLink="slot" color="ourtheme" detail>
+              <ion-icon slot="start" name="card"></ion-icon><ion-label>View Slots</ion-label>
+            </ion-item>
+
+            <ion-item button routerLink="addslot" color="ourtheme" detail>
+              <ion-icon slot="start" name="add"></ion-icon>
+              <ion-label>Add Slot</ion-label>
+            </ion-item>
+
+            <ion-item button color="ourtheme" detail (click)="generate('sl')">
+              <ion-icon name="download" slot="start"></ion-icon>
+              <ion-label>Report as pdf</ion-label>
+            </ion-item>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="acc" >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-icon slot="start" size="large" color="light" name="people"></ion-icon>
+              </mat-panel-title>
+
+              <mat-panel-description>
+                <ion-label color="light">Students</ion-label>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <ion-item button routerLink="student" color="ourtheme" detail>
+              <ion-icon slot="start" name="people"></ion-icon><ion-label>View Students</ion-label>
+            </ion-item>
+
+            <ion-item button color="ourtheme" detail (click)="generate('st')">
+              <ion-icon name="download" slot="start"></ion-icon>
+              <ion-label>Report as pdf</ion-label>
+            </ion-item>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class="acc">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <ion-icon slot="start" name="list" size="large" color="light"></ion-icon>
+              </mat-panel-title>
+
+              <mat-panel-description>
+                <ion-label color="light">Bookings</ion-label>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <ion-item button routerLink="booking" color="ourtheme" detail>
+              <ion-icon slot="start" name="list"></ion-icon><ion-label>View Bookings</ion-label>
+            </ion-item>
+
+            <ion-item button color="ourtheme" detail (click)="generate('bk')">
+              <ion-icon name="download" slot="start"></ion-icon>
+              <ion-label>Report as pdf</ion-label>
+            </ion-item>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+  
+
+
+    </mat-sidenav>
+    <mat-sidenav-content style="margin-left: 300px; padding-bottom: 100px; background-color: white;">
+
+      <router-outlet *ngIf="dbs.isToolbarVisible"></router-outlet>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ion-content>

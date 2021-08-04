@@ -1,0 +1,97 @@
+<mat-form-field style="width: 96%; margin: auto; margin-top: 10px; margin-left: 23px;">
+  <mat-label>Search Slot</mat-label>
+  <input matInput (keyup)="applyFilter(filter.value)" #filter placeholder="Search slot by id or source, destinaion or date and time" #input>
+</mat-form-field>
+
+<mat-progress-bar *ngIf="isVisible" style="width: 96%; margin: auto;" mode="indeterminate"></mat-progress-bar>
+
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="width: 96%; margin: auto;">
+
+    <ng-container matColumnDef="checkbox">
+      <th mat-header-cell *matHeaderCellDef> 
+
+        <mat-checkbox color="primary" [checked]="selecedtAll" [indeterminate]="isIndeterminate" (change)="checkAll($event.checked)" ></mat-checkbox>
+
+        <button (click)="generateReport()" *ngIf="slots.length > 0" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon style="color: #0a4694;">download</mat-icon>
+      </button> 
+
+      <button *ngIf="slots.length > 0" (click)="deleteSelected()"  mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+        <mat-icon style="color: red;" color="danger">delete</mat-icon>
+    </button> 
+      
+      </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">
+        <mat-checkbox color="primary" [checked]="selected" (change)="select($event.checked, element.id)" ></mat-checkbox> 
+      </td>
+    </ng-container>
+    
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="from">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> From </th>
+      <td mat-cell *matCellDef="let element"> {{element.from}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="to">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> To </th>
+      <td mat-cell *matCellDef="let element"> {{element.to}} </td>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="avail">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Available Seats </th>
+      <td mat-cell *matCellDef="let element"> {{element.avail}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="booked">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Booked Seats</th>
+      <td mat-cell *matCellDef="let element"> {{element.booked}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="datetime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date & Time</th>
+      <td mat-cell *matCellDef="let element"> {{element.datetime | date:'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> 
+        Actions 
+        <mat-checkbox c style="margin-left: 10px; color: #0a4694" color="primary" (change)="viewAll($event.checked)" >
+          View All
+        </mat-checkbox>
+        
+      </th>
+      <td mat-cell *matCellDef="let element"> 
+          <button (click)="openDialog(element)" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+              <mat-icon style="color: #0a4694;">edit</mat-icon>
+          </button> 
+
+          <button (click)="delete(element.id)" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+              <mat-icon style="color: red;" color="danger">delete</mat-icon>
+          </button> 
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10]"></mat-paginator>

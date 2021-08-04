@@ -1,0 +1,73 @@
+<h2 mat-dialog-title style="color: #0a4694">Bus Profile</h2>
+<mat-dialog-content class="mat-typography" >
+   
+  <div style=" background-color: white;">
+
+
+    <div style="margin: auto;  border: 2px solid #0a46943b;
+     border-radius: 10px;">
+      <form [formGroup]="signupForm" >
+  
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label color="ourtheme" position="floating">Registration Number</ion-label>
+                <ion-input  (ionInput)="regEnable()" formControlName="regno" required enterkeyhint="next" ></ion-input>
+              
+              </ion-item>
+        
+              <div *ngIf="enregno">
+            
+                <mat-error *ngIf="regno.hasError('required') ">
+                  <small style="color: red; margin-left: 5px;">Registration number is <strong><span style="letter-spacing: .5px;">required</span></strong></small>
+                </mat-error>
+  
+                <mat-error *ngIf="regno.hasError('pattern') ">
+                  <small style="color: red; margin-left: 5px;">Invalid registration number</small>
+                </mat-error>
+              </div>
+            </ion-col>
+  
+            <ion-col size="12">
+              <ion-item>
+                <ion-label color="ourtheme" position="floating">Maximum Number of Passengers</ion-label>
+                <ion-input  (ionInput)="numPassEnable()" formControlName="numPassengers" type="number" enterkeyhint="next"></ion-input>
+              </ion-item>
+        
+              <div *ngIf="ennumpassengers">
+            
+                <mat-error *ngIf="numPassengers.hasError('required') ">
+                  <small style="color: red; margin-left: 5px;">Maximum number of passangers is <strong><span style="letter-spacing: .5px;">required</span></strong></small>
+                </mat-error>
+              </div>
+            </ion-col>
+  
+            <ion-col size="12">
+              <ion-item>
+                <ion-label color="ourtheme" position="stacked" >Assign Driver (Optional)</ion-label>
+                <ion-select color="ourtheme"  value="bus.driverid"  formControlName="driverid" cancelText="Cancel" okText="Done" style="width: 400px;" >
+                  <ion-select-option (ionClick)="test()" style="width: 800px;" *ngFor="let driver of drivers" [value]="driver.id">
+                    {{driver.id }} 
+                    {{driver.firstname.substring(0,1)}} {{driver.lastname}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+  
+  
+        </ion-grid>
+  
+      </form>
+
+    </div>
+  
+  
+  </div>
+  
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close style="color: #0a4694;">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" [disabled]="signupForm.status == 'INVALID'" cdkFocusInitial (click)="save()" style="background-color: #0a4694; color: white;">Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,113 @@
+<h2 mat-dialog-title style="color: #0a4694">Driver Profile</h2>
+<mat-dialog-content class="mat-typography" >
+   
+  <div style="background-color: white;">
+
+
+    <div style="width: 100%; margin: auto;  border: 2px solid #0a46943b;
+     border-radius: 10px;">
+      <form [formGroup]="signupForm" >
+  
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label color="ourtheme" position="floating">First Name</ion-label>
+                <ion-input  (ionInput)="fnameEnable()" formControlName="firstname" required enterkeyhint="next" ></ion-input>
+              
+              </ion-item>
+        
+              <div *ngIf="fenabled">
+            
+                <mat-error *ngIf="firstname.hasError('required') ">
+                  <small style="color: red; margin-left: 5px;">First name is <strong><span style="letter-spacing: .5px;">required</span></strong></small>
+                </mat-error>
+        
+                <mat-error *ngIf="firstname.hasError('pattern')">
+                  <small style="color: red; margin-left: 5px;" errors>First name must not have a special charector or a number</small>
+                </mat-error>
+        
+                <mat-error *ngIf="firstname.hasError('minlength')">
+                  <small style="color: red; margin-left: 5px;" errors>First name must have atleast 3 letters</small>
+                </mat-error>
+              </div>
+            </ion-col>
+  
+            <ion-col size="12">
+              <ion-item>
+                <ion-label color="ourtheme" position="floating">Last Name</ion-label>
+                <ion-input  (ionInput)="lnameEnable()" formControlName="lastname" enterkeyhint="next"></ion-input>
+              </ion-item>
+        
+              <div *ngIf="lenabled">
+            
+                <mat-error *ngIf="lastname.hasError('required') ">
+                  <small style="color: red; margin-left: 5px;">Last name is <strong><span style="letter-spacing: .5px;">required</span></strong></small>
+                </mat-error>
+        
+                <mat-error *ngIf="lastname.hasError('pattern')">
+                  <small style="color: red; margin-left: 5px;" errors>Last name must not have a special charector or a number</small>
+                </mat-error>
+        
+                <mat-error *ngIf="lastname.hasError('minlength')">
+                  <small style="color: red; margin-left: 5px;" errors>Last name must have atleast 3 letters</small>
+                </mat-error>
+              </div>
+            </ion-col>
+          </ion-row>
+  
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label  color="ourtheme" position="stacked">Phone</ion-label>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="1" style="margin: 0px; padding: 0px;">
+                      <ion-input readonly value="+27" ></ion-input>
+                    </ion-col>
+                    <ion-col size="11" style="margin: 0px; padding: 0px;">
+                    
+                      <ion-input type="number" (ionInput)="phoneEnable()" placeholder="694534433" formControlName="phone" type="number" max="10" enterkeyhint="next"></ion-input>
+          
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                  
+              
+              </ion-item>
+          
+              <div *ngIf="penabled">
+          
+                <mat-error *ngIf="phone.hasError('required')">
+                  <small errors style="color: red; margin-left: 5px;">Phone number is <strong><span style="letter-spacing: .5px;">required</span></strong></small>
+                </mat-error>
+          
+                <mat-error *ngIf="phone.hasError('minlength')">
+                  <small style="color: red; margin-left: 5px;" errors>Phone number must have 10 digits</small>
+                </mat-error>
+          
+                <mat-error *ngIf="phone.hasError('pattern')">
+                  <small style="color: red; margin-left: 5px;" errors>  Invalid phone number length</small>
+                </mat-error>
+          
+                <mat-error *ngIf="phone.hasError('maxlength')">
+                  <small style="color: red; margin-left: 5px;" errors>Phone number must have 10 digits</small>
+                </mat-error>
+              </div>
+            
+            </ion-col>
+          </ion-row>
+  
+        </ion-grid>
+  
+      </form>
+    </div>
+  
+  
+  </div>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close style="color: #0a4694;">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" [disabled]="signupForm.status == 'INVALID'" cdkFocusInitial (click)="save()" style="background-color: #0a4694; color: white;">Save</button>
+</mat-dialog-actions>
