@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  credentials: {
+    'x-hasura-access-key': 'EofgqKM9YvfCv0JDHB0RKA360KuZqNAcNdSF067ia8aIQxAINdbCqEMDBCLHk8Aj'
+  }
 };
 
 /*
